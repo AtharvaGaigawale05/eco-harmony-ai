@@ -78,14 +78,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "EcoTrack AI" },
+      { name: "description", content: "EcoTrack AI is a futuristic AI sustainability coach that tracks carbon footprints and offers personalized eco-friendly guidance." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "EcoTrack AI" },
+      { property: "og:description", content: "EcoTrack AI is a futuristic AI sustainability coach that tracks carbon footprints and offers personalized eco-friendly guidance." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "EcoTrack AI" },
+      { name: "twitter:description", content: "EcoTrack AI is a futuristic AI sustainability coach that tracks carbon footprints and offers personalized eco-friendly guidance." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/PhTkjQ4khOVpDKXyKyJOuBKAmvx2/social-images/social-1780984711551-Screenshot_2026-06-09_112046.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/PhTkjQ4khOVpDKXyKyJOuBKAmvx2/social-images/social-1780984711551-Screenshot_2026-06-09_112046.webp" },
     ],
     links: [
       {
