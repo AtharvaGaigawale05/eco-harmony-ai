@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import type { Breakdown } from "@/lib/eco/types";
 
@@ -9,7 +10,7 @@ const COLORS = [
   "var(--chart-5)",
 ];
 
-export function FootprintChart({ breakdown }: { breakdown: Breakdown }) {
+function FootprintChartBase({ breakdown }: { breakdown: Breakdown }) {
   const data = [
     { name: "Transport", value: breakdown.transport },
     { name: "Electricity", value: breakdown.electricity },
@@ -33,3 +34,5 @@ export function FootprintChart({ breakdown }: { breakdown: Breakdown }) {
     </div>
   );
 }
+
+export const FootprintChart = memo(FootprintChartBase);

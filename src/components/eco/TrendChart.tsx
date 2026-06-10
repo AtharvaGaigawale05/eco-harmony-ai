@@ -1,7 +1,8 @@
+import { memo } from "react";
 import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer, Tooltip, CartesianGrid } from "recharts";
 import type { HistoryEntry } from "@/lib/eco/types";
 
-export function TrendChart({ history }: { history: HistoryEntry[] }) {
+function TrendChartBase({ history }: { history: HistoryEntry[] }) {
   const data = [...history].reverse().slice(-12).map((h, i) => ({
     name: `#${i + 1}`,
     total: h.totalKgPerYear,
@@ -29,3 +30,5 @@ export function TrendChart({ history }: { history: HistoryEntry[] }) {
     </div>
   );
 }
+
+export const TrendChart = memo(TrendChartBase);
