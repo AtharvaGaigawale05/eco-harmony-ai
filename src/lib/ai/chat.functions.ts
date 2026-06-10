@@ -3,11 +3,14 @@ import { z } from "zod";
 
 const MessageSchema = z.object({
   role: z.enum(["user", "assistant", "system"]),
-  content: z.string().min(1).max(4000),
+  content: z.string().min(1).max(2000),
 });
 
 const InputSchema = z.object({
-  messages: z.array(MessageSchema).min(1).max(40),
+  // Tightened from 40×4000 to 16×2000 to reduce per-call cost surface.
+  // This app is no-auth by design (all user data is browser-local), so we
+  // limit abuse blast-radius by capping input size at the validator layer.
+  messages: z.array(MessageSchema).min(1).max(16),
   context: z
     .object({
       totalKgPerYear: z.number().optional(),
