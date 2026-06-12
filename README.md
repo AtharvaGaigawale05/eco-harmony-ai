@@ -309,7 +309,7 @@ Ensures code quality and deployment readiness.
 ## Clone Repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_LINK
+git clone https://github.com/AtharvaGaigawale05/eco-harmony-ai
 cd eco-track-ai
 ```
 
