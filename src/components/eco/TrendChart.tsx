@@ -1,13 +1,24 @@
 import { memo } from "react";
-import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer, Tooltip, CartesianGrid } from "recharts";
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  ResponsiveContainer,
+  Tooltip,
+  CartesianGrid,
+} from "recharts";
 import type { HistoryEntry } from "@/lib/eco/types";
 
 function TrendChartBase({ history }: { history: HistoryEntry[] }) {
-  const data = [...history].reverse().slice(-12).map((h, i) => ({
-    name: `#${i + 1}`,
-    total: h.totalKgPerYear,
-    score: h.ecoScore,
-  }));
+  const data = [...history]
+    .reverse()
+    .slice(-12)
+    .map((h, i) => ({
+      name: `#${i + 1}`,
+      total: h.totalKgPerYear,
+      score: h.ecoScore,
+    }));
   return (
     <div className="h-64 w-full" role="img" aria-label="Trend of your footprint over time">
       <ResponsiveContainer>
@@ -22,9 +33,20 @@ function TrendChartBase({ history }: { history: HistoryEntry[] }) {
           <XAxis dataKey="name" stroke="var(--muted-foreground)" fontSize={12} />
           <YAxis stroke="var(--muted-foreground)" fontSize={12} />
           <Tooltip
-            contentStyle={{ background: "var(--popover)", border: "1px solid var(--border)", borderRadius: 12, color: "var(--foreground)" }}
+            contentStyle={{
+              background: "var(--popover)",
+              border: "1px solid var(--border)",
+              borderRadius: 12,
+              color: "var(--foreground)",
+            }}
           />
-          <Area type="monotone" dataKey="total" stroke="var(--chart-1)" strokeWidth={2} fill="url(#g1)" />
+          <Area
+            type="monotone"
+            dataKey="total"
+            stroke="var(--chart-1)"
+            strokeWidth={2}
+            fill="url(#g1)"
+          />
         </AreaChart>
       </ResponsiveContainer>
     </div>

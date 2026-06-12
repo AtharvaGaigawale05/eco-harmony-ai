@@ -10,8 +10,12 @@ function ScoreRingBase({ score, level }: { score: number; level: string }) {
         <svg viewBox="0 0 140 140" className="size-32 -rotate-90">
           <circle cx="70" cy="70" r={radius} stroke="var(--border)" strokeWidth="10" fill="none" />
           <circle
-            cx="70" cy="70" r={radius}
-            stroke="url(#ring)" strokeWidth="10" fill="none"
+            cx="70"
+            cy="70"
+            r={radius}
+            stroke="url(#ring)"
+            strokeWidth="10"
+            fill="none"
             strokeLinecap="round"
             strokeDasharray={c}
             strokeDashoffset={offset}
@@ -27,7 +31,9 @@ function ScoreRingBase({ score, level }: { score: number; level: string }) {
         <div className="absolute inset-0 grid place-items-center">
           <div className="text-center">
             <div className="text-3xl font-semibold">{score}</div>
-            <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Eco score</div>
+            <div className="text-[10px] uppercase tracking-widest text-muted-foreground">
+              Eco score
+            </div>
           </div>
         </div>
       </div>

@@ -22,11 +22,26 @@ function FootprintChartBase({ breakdown }: { breakdown: Breakdown }) {
     <div className="h-64 w-full" role="img" aria-label="Carbon footprint breakdown by category">
       <ResponsiveContainer>
         <PieChart>
-          <Pie data={data} dataKey="value" nameKey="name" innerRadius={55} outerRadius={90} stroke="none" paddingAngle={2}>
-            {data.map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}
+          <Pie
+            data={data}
+            dataKey="value"
+            nameKey="name"
+            innerRadius={55}
+            outerRadius={90}
+            stroke="none"
+            paddingAngle={2}
+          >
+            {data.map((_, i) => (
+              <Cell key={i} fill={COLORS[i % COLORS.length]} />
+            ))}
           </Pie>
           <Tooltip
-            contentStyle={{ background: "var(--popover)", border: "1px solid var(--border)", borderRadius: 12, color: "var(--foreground)" }}
+            contentStyle={{
+              background: "var(--popover)",
+              border: "1px solid var(--border)",
+              borderRadius: 12,
+              color: "var(--foreground)",
+            }}
             formatter={(v: number, n: string) => [`${v} kg`, n]}
           />
         </PieChart>

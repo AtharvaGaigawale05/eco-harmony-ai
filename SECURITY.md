@@ -12,12 +12,12 @@ EcoTrack AI is a **client-first** application:
 
 This project runs on **TanStack Start on Cloudflare Workers**, not an Express server. Therefore the classic Express middleware stack (`helmet`, `cors`, `express-rate-limit`, `express-validator`) does not apply directly. The equivalent protections are:
 
-| Express world          | EcoTrack AI equivalent                                                                   |
-|------------------------|------------------------------------------------------------------------------------------|
-| `helmet`               | Cloudflare edge sets baseline security headers; SSR HTML is fully escaped by React.      |
-| `cors`                 | Server functions are same-origin RPCs — no cross-origin surface is exposed.              |
-| `express-rate-limit`   | Lovable AI Gateway enforces per-key rate limiting and quota.                             |
-| `express-validator`    | **Zod** schemas validate every server-function input (`src/lib/ai/chat.functions.ts`).   |
+| Express world        | EcoTrack AI equivalent                                                                 |
+| -------------------- | -------------------------------------------------------------------------------------- |
+| `helmet`             | Cloudflare edge sets baseline security headers; SSR HTML is fully escaped by React.    |
+| `cors`               | Server functions are same-origin RPCs — no cross-origin surface is exposed.            |
+| `express-rate-limit` | Lovable AI Gateway enforces per-key rate limiting and quota.                           |
+| `express-validator`  | **Zod** schemas validate every server-function input (`src/lib/ai/chat.functions.ts`). |
 
 ## Server-function hardening checklist
 
@@ -46,7 +46,7 @@ This project runs on **TanStack Start on Cloudflare Workers**, not an Express se
 
 Found something? Please open a private issue or email the maintainers via the Lovable project page. We aim to triage within **72 hours**.
 
-## What is *not* in scope
+## What is _not_ in scope
 
 - Persistent user accounts (out of scope — no auth surface exists).
 - Payment processing (none).

@@ -59,17 +59,18 @@ export const ecoChat = createServerFn({ method: "POST" })
       },
       body: JSON.stringify({
         model: "google/gemini-2.5-flash",
-        messages: [
-          { role: "system", content: SYSTEM_PROMPT + contextNote },
-          ...data.messages,
-        ],
+        messages: [{ role: "system", content: SYSTEM_PROMPT + contextNote }, ...data.messages],
       }),
     });
 
     if (!res.ok) {
       const text = await res.text().catch(() => "");
-      if (res.status === 429) return { reply: "I'm a bit overwhelmed right now — please try again in a moment." };
-      if (res.status === 402) return { reply: "AI credits are exhausted for this workspace. Please add credits to continue." };
+      if (res.status === 429)
+        return { reply: "I'm a bit overwhelmed right now — please try again in a moment." };
+      if (res.status === 402)
+        return {
+          reply: "AI credits are exhausted for this workspace. Please add credits to continue.",
+        };
       console.error("AI gateway error", res.status, text);
       return { reply: "Sorry, I couldn't think of a reply just now. Try again shortly." };
     }
@@ -108,7 +109,10 @@ export const ecoRecommendations = createServerFn({ method: "POST" })
         body: JSON.stringify({
           model: "google/gemini-2.5-flash",
           messages: [
-            { role: "system", content: "You output only valid JSON arrays. No prose, no markdown fences." },
+            {
+              role: "system",
+              content: "You output only valid JSON arrays. No prose, no markdown fences.",
+            },
             { role: "user", content: prompt },
           ],
         }),
@@ -116,7 +120,10 @@ export const ecoRecommendations = createServerFn({ method: "POST" })
       if (!res.ok) return { recommendations: fallbackRecs(data) };
       const json = (await res.json()) as { choices?: Array<{ message?: { content?: string } }> };
       const text = json.choices?.[0]?.message?.content ?? "[]";
-      const cleaned = text.replace(/^```(?:json)?/i, "").replace(/```$/i, "").trim();
+      const cleaned = text
+        .replace(/^```(?:json)?/i, "")
+        .replace(/```$/i, "")
+        .trim();
       const parsed = JSON.parse(cleaned) as unknown;
       if (Array.isArray(parsed)) return { recommendations: parsed };
       return { recommendations: fallbackRecs(data) };
@@ -129,10 +136,35 @@ function fallbackRecs(d: z.infer<typeof RecInputSchema>) {
   const entries = Object.entries(d.breakdown).sort((a, b) => b[1] - a[1]);
   const top = entries[0]?.[0] ?? "transport";
   return [
-    { title: "Audit your top category", description: `Your largest impact is ${top}. Focus reductions there first.`, impact: "high", category: top },
-    { title: "Switch to LEDs", description: "Cut lighting electricity by up to 80% with LED bulbs.", impact: "medium", category: "electricity" },
-    { title: "One meatless day per week", description: "A single plant-based day saves ~250 kg CO2e per year.", impact: "medium", category: "food" },
-    { title: "Shorter showers", description: "Aim for 5 minutes to reduce hot water use and energy.", impact: "low", category: "water" },
-    { title: "Recycle and compost", description: "Diverting organics from landfill significantly cuts methane.", impact: "medium", category: "waste" },
+    {
+      title: "Audit your top category",
+      description: `Your largest impact is ${top}. Focus reductions there first.`,
+      impact: "high",
+      category: top,
+    },
+    {
+      title: "Switch to LEDs",
+      description: "Cut lighting electricity by up to 80% with LED bulbs.",
+      impact: "medium",
+      category: "electricity",
+    },
+    {
+      title: "One meatless day per week",
+      description: "A single plant-based day saves ~250 kg CO2e per year.",
+      impact: "medium",
+      category: "food",
+    },
+    {
+      title: "Shorter showers",
+      description: "Aim for 5 minutes to reduce hot water use and energy.",
+      impact: "low",
+      category: "water",
+    },
+    {
+      title: "Recycle and compost",
+      description: "Diverting organics from landfill significantly cuts methane.",
+      impact: "medium",
+      category: "waste",
+    },
   ];
 }

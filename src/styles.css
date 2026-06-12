@@ -121,7 +121,10 @@
     font-feature-settings: "ss01", "cv11";
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     letter-spacing: -0.02em;
   }
 }
@@ -139,9 +142,15 @@
     background-clip: text;
     color: transparent;
   }
-  .bg-gradient-eco { background: var(--gradient-eco); }
-  .shadow-glow { box-shadow: var(--shadow-glow); }
-  .shadow-elegant { box-shadow: var(--shadow-elegant); }
+  .bg-gradient-eco {
+    background: var(--gradient-eco);
+  }
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
 }
 
 /* Accessibility: respect users who prefer reduced motion (WCAG 2.3.3) */
