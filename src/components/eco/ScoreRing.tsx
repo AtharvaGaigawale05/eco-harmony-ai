@@ -1,4 +1,6 @@
-export function ScoreRing({ score, level }: { score: number; level: string }) {
+import { memo } from "react";
+
+function ScoreRingBase({ score, level }: { score: number; level: string }) {
   const radius = 56;
   const c = 2 * Math.PI * radius;
   const offset = c - (Math.max(0, Math.min(100, score)) / 100) * c;
@@ -36,3 +38,5 @@ export function ScoreRing({ score, level }: { score: number; level: string }) {
     </div>
   );
 }
+
+export const ScoreRing = memo(ScoreRingBase);
