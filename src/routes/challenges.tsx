@@ -49,7 +49,6 @@ function ChallengesPage() {
 
   function setProgress(id: string, value: number) {
     setState((prev) => {
-      const cur = prev[id] ?? { completed: false, progress: 0 };
       const completed = value >= 100;
       const next: ChallengeState = {
         ...prev,
