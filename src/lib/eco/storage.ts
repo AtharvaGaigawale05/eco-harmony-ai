@@ -6,7 +6,11 @@ const INPUT_KEY = "ecotrack:input:v1";
 
 function safeWindow(): Storage | null {
   if (typeof window === "undefined") return null;
-  try { return window.localStorage; } catch { return null; }
+  try {
+    return window.localStorage;
+  } catch {
+    return null;
+  }
 }
 
 export function loadHistory(): HistoryEntry[] {
@@ -15,7 +19,9 @@ export function loadHistory(): HistoryEntry[] {
   try {
     const raw = ls.getItem(HISTORY_KEY);
     return raw ? (JSON.parse(raw) as HistoryEntry[]) : [];
-  } catch { return []; }
+  } catch {
+    return [];
+  }
 }
 
 export function saveHistoryEntry(entry: HistoryEntry): HistoryEntry[] {
@@ -31,7 +37,9 @@ export function loadInput(): CalculatorInput | null {
   try {
     const raw = ls.getItem(INPUT_KEY);
     return raw ? (JSON.parse(raw) as CalculatorInput) : null;
-  } catch { return null; }
+  } catch {
+    return null;
+  }
 }
 
 export function saveInput(input: CalculatorInput) {
@@ -47,7 +55,9 @@ export function loadChallenges(): ChallengeState {
   try {
     const raw = ls.getItem(CHALLENGES_KEY);
     return raw ? (JSON.parse(raw) as ChallengeState) : {};
-  } catch { return {}; }
+  } catch {
+    return {};
+  }
 }
 
 export function saveChallenges(state: ChallengeState) {

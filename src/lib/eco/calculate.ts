@@ -23,7 +23,9 @@ export function calculate(input: CalculatorInput): CalculationResult {
     input.flightsPerYear * EF.flightPerTrip;
 
   const electricity =
-    input.electricityKwhPerMonth * 12 * EF.electricityPerKwh *
+    input.electricityKwhPerMonth *
+    12 *
+    EF.electricityPerKwh *
     (1 - Math.min(100, Math.max(0, input.renewableShare)) / 100);
 
   const food = EF.dietPerYear[input.dietType];
@@ -31,8 +33,10 @@ export function calculate(input: CalculatorInput): CalculationResult {
   const water = input.waterLitersPerDay * 365 * EF.waterPerLiter;
 
   const waste =
-    input.wasteKgPerWeek * 52 * EF.wastePerKg *
-    (1 - Math.min(100, Math.max(0, input.recyclingShare)) / 100 * 0.6);
+    input.wasteKgPerWeek *
+    52 *
+    EF.wastePerKg *
+    (1 - (Math.min(100, Math.max(0, input.recyclingShare)) / 100) * 0.6);
 
   const breakdown: Breakdown = {
     transport: round(transport),
@@ -43,21 +47,36 @@ export function calculate(input: CalculatorInput): CalculationResult {
   };
 
   const totalKgPerYear = round(
-    breakdown.transport + breakdown.electricity + breakdown.food + breakdown.water + breakdown.waste,
+    breakdown.transport +
+      breakdown.electricity +
+      breakdown.food +
+      breakdown.water +
+      breakdown.waste,
   );
 
   // Global average ~ 4800 kg/yr per person; target 2000 kg/yr.
-  const ecoScore = Math.max(0, Math.min(100, Math.round(100 - ((totalKgPerYear - 1500) / 6000) * 100)));
+  const ecoScore = Math.max(
+    0,
+    Math.min(100, Math.round(100 - ((totalKgPerYear - 1500) / 6000) * 100)),
+  );
 
   const level =
-    ecoScore >= 80 ? "Planet Protector" :
-    ecoScore >= 60 ? "Eco Hero" :
-    ecoScore >= 40 ? "Eco Aware" : "Beginner";
+    ecoScore >= 80
+      ? "Planet Protector"
+      : ecoScore >= 60
+        ? "Eco Hero"
+        : ecoScore >= 40
+          ? "Eco Aware"
+          : "Beginner";
 
   const rating =
-    ecoScore >= 80 ? "Outstanding — well below global average" :
-    ecoScore >= 60 ? "Great — better than most" :
-    ecoScore >= 40 ? "Average — clear room to improve" : "High impact — let's reduce it together";
+    ecoScore >= 80
+      ? "Outstanding — well below global average"
+      : ecoScore >= 60
+        ? "Great — better than most"
+        : ecoScore >= 40
+          ? "Average — clear room to improve"
+          : "High impact — let's reduce it together";
 
   return {
     totalKgPerYear,

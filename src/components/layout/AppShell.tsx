@@ -29,7 +29,9 @@ export function AppShell({ children }: { children: ReactNode }) {
                 key={item.to}
                 to={item.to}
                 className="px-3 py-2 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/60 transition-colors"
-                activeProps={{ className: "px-3 py-2 rounded-lg text-sm text-foreground bg-secondary/80" }}
+                activeProps={{
+                  className: "px-3 py-2 rounded-lg text-sm text-foreground bg-secondary/80",
+                }}
                 activeOptions={{ exact: item.to === "/" }}
               >
                 {item.label}
@@ -43,14 +45,20 @@ export function AppShell({ children }: { children: ReactNode }) {
             Get started
           </Link>
         </div>
-        <nav aria-label="Primary mobile" className="md:hidden border-t border-border/60 overflow-x-auto">
+        <nav
+          aria-label="Primary mobile"
+          className="md:hidden border-t border-border/60 overflow-x-auto"
+        >
           <ul className="flex items-center gap-1 px-2 py-2 min-w-max">
             {nav.map((item) => (
               <li key={item.to}>
                 <Link
                   to={item.to}
                   className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-muted-foreground hover:text-foreground"
-                  activeProps={{ className: "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-foreground bg-secondary/80" }}
+                  activeProps={{
+                    className:
+                      "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-foreground bg-secondary/80",
+                  }}
                   activeOptions={{ exact: item.to === "/" }}
                 >
                   <item.icon className="size-4" aria-hidden />

@@ -27,14 +27,14 @@ bun run test:coverage       # coverage report
 
 ## What's covered
 
-| Area                          | File                                                  |
-|-------------------------------|-------------------------------------------------------|
-| Carbon calculation engine     | `src/lib/eco/__tests__/calculate.test.ts`             |
-| Challenge unlock logic        | `src/lib/eco/__tests__/challenges.test.ts`            |
-| Storage helpers (localStorage)| `src/lib/eco/__tests__/storage.test.ts`               |
-| AI server-function validators | `src/lib/ai/__tests__/chat.validators.test.ts`        |
-| Dashboard render              | `src/routes/__tests__/dashboard.test.tsx`             |
-| Assistant render              | `src/routes/__tests__/assistant.test.tsx`             |
+| Area                           | File                                           |
+| ------------------------------ | ---------------------------------------------- |
+| Carbon calculation engine      | `src/lib/eco/__tests__/calculate.test.ts`      |
+| Challenge unlock logic         | `src/lib/eco/__tests__/challenges.test.ts`     |
+| Storage helpers (localStorage) | `src/lib/eco/__tests__/storage.test.ts`        |
+| AI server-function validators  | `src/lib/ai/__tests__/chat.validators.test.ts` |
+| Dashboard render               | `src/routes/__tests__/dashboard.test.tsx`      |
+| Assistant render               | `src/routes/__tests__/assistant.test.tsx`      |
 
 ## Writing a test
 
